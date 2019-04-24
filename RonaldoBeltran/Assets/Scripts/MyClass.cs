@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MyClass : MonoBehaviour{
+public class MyClass : MonoBehaviour {
 
     public int  number = 5;
     public Vector3 position;

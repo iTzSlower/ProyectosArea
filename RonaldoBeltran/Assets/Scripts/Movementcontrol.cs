@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Movementcontrol : MonoBehaviour
-{
+public class Movementcontrol : MonoBehaviour {
 
     public float speed = 1;
+    public float rotationSpeed = 1;
+    public float horizontalJumpDistance = 1;
+    public KeyCode positiveButton;
+    public KeyCode negativeButton;
 
     // Start is called before the first frame update
     void Start(){
@@ -16,33 +19,32 @@ public class Movementcontrol : MonoBehaviour
     void Update() {
         //Vector3 tempVector = Vector3.zero;
         //tempVector.z = speed;
-        //gameObject.transform.position += tempVector * Time.deltaTime;
+        //transform.position += tempVector * Time.deltaTime;
+        Vector3 horizontal = Vector3.up * Input.GetAxis("Horizontal") * speed * Time.deltaTime;
+        Vector3 vertical = Vector3.forward * GetVerticalAxis() * speed * Time.deltaTime;
 
-        if (Input.GetKey(KeyCode.UpArrow)) {
-            Vector3 tempVector = Vector3.zero;
-            tempVector.z = speed;
-            gameObject.transform.position += tempVector * Time.deltaTime;
+        transform.Translate ((vertical).normalized * speed * Time.deltaTime);
+        transform.Rotate (horizontal * Time.deltaTime);
+    }
+      
+    int GetVerticalAxis (){
+
+        int up = 0, down = 0;
+
+        if (Input.GetKey (positiveButton) || Input.GetKey (KeyCode.W)){
+            up = 1;
+        }
+        if (Input.GetKey (negativeButton) || Input.GetKey(KeyCode.S)){
+            down = 1;
         }
 
-        else if (Input.GetKey(KeyCode.DownArrow))
-        {
-            Vector3 tempVector = Vector3.zero;
-            tempVector.z = -speed;
-            gameObject.transform.position += tempVector * Time.deltaTime;
-        }
+        return up - down;
+    }
 
-        if (Input.GetKey(KeyCode.LeftArrow))
-        {
-            Vector3 tempVector = Vector3.zero;
-            tempVector.x = -speed;
-            gameObject.transform.position += tempVector * Time.deltaTime;
-        }
-
-        else if (Input.GetKey(KeyCode.RightArrow))
-        {
-            Vector3 tempVector = Vector3.zero;
-            tempVector.x = speed;
-            gameObject.transform.position += tempVector * Time.deltaTime;
-        }
+    void OnTrigerEnter() {
+        Debug.Log("Entered Target Area");
+    }
+    void OntriggerExit() {
+        Debug.Log("Existed Target Area");
     }
 }
