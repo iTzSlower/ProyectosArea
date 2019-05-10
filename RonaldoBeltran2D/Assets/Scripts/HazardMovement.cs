@@ -31,7 +31,4 @@ public class HazardMovement : MonoBehaviour
         Gizmos.DrawRay (transform.position, transform.right);
 
     }
-    void OnGUI (){
-        GUI.Label (new Rect(10, 10, 100, 50), "Current Position" + transform.position);
-    }
 }
