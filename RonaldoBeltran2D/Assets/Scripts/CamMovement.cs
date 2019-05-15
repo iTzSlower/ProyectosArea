@@ -7,7 +7,7 @@ public class CamMovement : MonoBehaviour
     public Transform followTarget;
     public float followSpeed;
     Vector2 camUnitDimentions;
-    public PlayerMovement playerMovement;
+    public PlayerPhysicMov playerMovement;
     Vector2 limits { get { return playerMovement.limits - camUnitDimentions; } }
 
     // Start is called before the first frame update
@@ -18,7 +18,7 @@ public class CamMovement : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         if (followTarget)
         {
@@ -35,8 +35,4 @@ public class CamMovement : MonoBehaviour
         }
     }
     
-    void OnGUI()
-    {
-        GUI.Label(new Rect(10, 10, 100, 50), "Current Limits " + limits);
-    }
 }

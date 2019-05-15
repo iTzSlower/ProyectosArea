@@ -16,7 +16,7 @@ public class HazardMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.RotateAround(point, axis, 12 * Time.deltaTime);
+        transform.RotateAround(point, axis, speed * Time.deltaTime);
         transform.rotation = Quaternion.identity;
     }
 
