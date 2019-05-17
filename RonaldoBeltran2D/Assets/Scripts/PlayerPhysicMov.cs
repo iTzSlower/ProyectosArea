@@ -10,7 +10,13 @@ public class PlayerPhysicMov : MonoBehaviour
     Vector2 colliderSize;
     Rigidbody2D rb2D;
     Vector2 currentMouseWorldPos;
-    public Vector2 mousePlayerDelta { get { return currentMouseWorldPos - rb2D.position; } }
+    public Vector2 current2DPos { get { return transform.position; } }
+    public Vector2 mousePlayerDelta { get {
+            return !rb2D ? Vector2.zero : currentMouseWorldPos - rb2D.position;
+        }
+    }
+
+    public GameObject bulletPrefab;
 
     // Start is called before the first frame update
     void Start()
@@ -43,6 +49,12 @@ public class PlayerPhysicMov : MonoBehaviour
     void Update ()
     {
         currentMouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+        if (Input.GetMouseButtonDown(0)) {
+            Debug.Log ("Bang!");
+            GameObject Instantiate(bulletPrefab, cur + (mousePlayerDelta.normalized * bull));
+            bullet.GetComponet<BulletBehaviour>().direction = mousePlayerDelta.normalized;
+        }
     }
 
     void OnGUI (){
@@ -57,6 +69,6 @@ public class PlayerPhysicMov : MonoBehaviour
         Gizmos.color = Color.magenta;
         Gizmos.DrawWireCube(Vector3.zero, shapeLimits * 2);
         Gizmos.DrawLine (transform.position, currentMouseWorldPos);
-        Gizmos.DrawSphere (currentMouseWorldPos, 0.35f);
+        Gizmos.DrawSphere (currentMouseWorldPos, 0.25f);
     }
 }

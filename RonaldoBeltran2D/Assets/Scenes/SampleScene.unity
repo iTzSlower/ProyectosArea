@@ -274,8 +274,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   followTarget: {fileID: 1286715871}
-  followSpeed: 60
+  followSpeed: 1.2
   playerMovement: {fileID: 1286715872}
+  maxTargetDistance: 3.5
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
