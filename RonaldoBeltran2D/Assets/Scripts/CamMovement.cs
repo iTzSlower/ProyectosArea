@@ -19,6 +19,13 @@ public class CamMovement : MonoBehaviour
       }
     }
 
+    Vector3 tempfollowTarget { get { return tempTarget.position; } }
+    public Transform tempTarget;
+    float tempSpeed;
+
+    
+    float targetOrtographicSize = 1;
+
     // Start is called before the first frame update
     void Start () {
         camUnitDimentions = new Vector2(Camera.main.orthographicSize * 16 / 9, Camera.main.orthographicSize);
@@ -26,17 +33,26 @@ public class CamMovement : MonoBehaviour
 
     // Update is called once per frame
     void LateUpdate () {
-        if (followTarget) {
+        if (playerMovement) {
 
-            Vector3 temp = Vector3.MoveTowards (transform.position, camfollowPoint, minSpeed + (camfollowPoint - cam2DPos).magnitude * followSpeed * Time.deltaTime);
+            Vector3 temp = tempTarget ? Vector3.MoveTowards(transform.position, tempfollowPoint, tempSpeed * Time.deltaTime);
+            Vector3.MoveTowards (transform.position, camfollowPoint, minSpeed + (camfollowPoint - cam2DPos).magnitude * followSpeed * Time.deltaTime);
             temp.x = Mathf.Clamp(temp.x, -limits.x, limits.x);
             temp.y = Mathf.Clamp(temp.y, -limits.y, limits.y);
             temp.z = transform.position.z;
             transform.position = temp;
         }
 
+        if (Camera.main.orthographicSize != targetOrtographicSize) {
+            Camera.main.orthographicSize  = Mathf.MoveTowards(Camera.main.orthographicSize,targetOrtographicSize,5)
+        }
 
     }
+    public void SetTempTarget (Transform target = null, float speed = 0){
+        tempTarget = target;
+        tempSpeed = speed;
+    }
+
     void OnDrawGizmos (){
         Gizmos.color = Color.green;
         Gizmos.DrawLine (cam2DPos, camfollowPoint);
