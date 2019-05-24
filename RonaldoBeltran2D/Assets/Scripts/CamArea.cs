@@ -6,6 +6,6 @@ public class CamArea : MonoBehaviour
 {
     public float targetSize = 7;
     public float transitionSpeed = 5;
-    public float ceterSpeed = 40;
+    public float centerSpeed = 40;
     
 }

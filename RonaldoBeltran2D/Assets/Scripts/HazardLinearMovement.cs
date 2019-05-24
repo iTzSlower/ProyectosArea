@@ -34,6 +34,10 @@ public class HazardLinearMovement : MonoBehaviour
             }
         }
     }
+    void OnDestroy ()
+    {
+        FindObjectOfType
+    }
 
     void Reset()
     {
