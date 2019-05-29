@@ -100,7 +100,6 @@ public class PlayerPhysicMov : MonoBehaviour
 
     void Shoot()
     {
-        Debug.Log("Bang!");
         GameObject bullet = Instantiate(bulletPrefab, current2DPos + (mousePlayerDelta.normalized * bulletOriginDist), Quaternion.identity);
         bullet.GetComponent<BulletBehaviour>().direction = mousePlayerDelta.normalized;
     }

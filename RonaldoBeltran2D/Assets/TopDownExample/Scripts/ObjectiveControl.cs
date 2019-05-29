@@ -5,20 +5,20 @@ using UnityEngine;
 public class ObjectiveControl : MonoBehaviour
 {
     public GameObject targetWall;
-    public int remaniningEnemies;
+    public int remainingEnemies;
 
     // Start is called before the first frame update
     void Start()
     {
-        remaniningEnemies = GameObject.FindGameObjectsWithTag("Hazard").Length;
+        remainingEnemies = GameObject.FindGameObjectsWithTag("Hazard").Length;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (remaniningEnemies <= 0 && targetWall)
+        if (remainingEnemies <= 0 && targetWall)
         {
-            DestroyObject
+            Destroy(targetWall);
         }
     }
 }

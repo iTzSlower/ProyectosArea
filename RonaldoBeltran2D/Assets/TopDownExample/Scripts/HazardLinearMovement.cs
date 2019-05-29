@@ -36,7 +36,7 @@ public class HazardLinearMovement : MonoBehaviour
     }
     void OnDestroy ()
     {
-        FindObjectOfType
+        FindObjectOfType<ObjectiveControl>().remainingEnemies--;
     }
 
     void Reset()
