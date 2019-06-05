@@ -5,10 +5,16 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/PlatformeeExample/Scenes/MainMenu.unity
     guid: e8bcaa67f427dab459fe076dc6685931
-  - enabled: 1
+  - enabled: 0
     path: Assets/PlatformeeExample/Scenes/Level01.unity
     guid: 235906ee5ebfb684895ecf290a9dd2ec
+  - enabled: 1
+    path: Assets/Lost in The Forest/Scenes/PanelofGame.unity
+    guid: eca081d2a772c7f4a99c7222da6da4af
+  - enabled: 1
+    path: Assets/Lost in The Forest/Scenes/Ayuda.unity
+    guid: 670f1877bf78cff42a7542dcc76227e1
   m_configObjects: {}
