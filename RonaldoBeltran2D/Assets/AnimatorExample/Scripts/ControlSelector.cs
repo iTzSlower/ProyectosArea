@@ -12,21 +12,24 @@ public class ControlSelector : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
-    void fixedUpdate() {
-        if (moveTopdown){
-            topdownCharControl.ControllerFixedUpdate();
-        } else {
-            platformCharControl.ControllerFixedUpdate();
+    void FixedUpdate()
+    {
+        if (moveTopdown)
+        {
+            topdownCharControl.ControlledFixedUpdate();
         }
-
+        else
+        {
+            platformCharControl.ControlledFixedUpdate();
+        }
     }
 
-    void OnGUI () {
-        moveTopdown = GUI.Toggle(new Rect(Screen.width / 2 - 60, 10, 120, 30), moveTopdown, "topdown ON/OFF");
+    void OnGUI()
+    {
+        moveTopdown = GUI.Toggle(new Rect(Screen.width / 2 - 60, 10, 120, 30), moveTopdown, "Topdown ON/OFF");
     }
-
 }

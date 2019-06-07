@@ -456,7 +456,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.47058824}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -911,9 +911,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'No, dudes siempre sigue al zorro
+  m_Text: 'No, dudes siempre sigue al zorro,
 
-    se habra veces en que dudaras,
+    habra veces en que dudaras,
 
     pero no lo pierdas de vista'
 --- !u!222 &1942962013
