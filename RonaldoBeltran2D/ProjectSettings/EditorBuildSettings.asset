@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Lost in The Forest/Scenes/Ayuda.unity
     guid: 670f1877bf78cff42a7542dcc76227e1
+  - enabled: 1
+    path: Assets/Lost in The Forest/Scenes/LevelG01.unity
+    guid: 9675c377fa623de4aac70ed142e529ab
   m_configObjects: {}
