@@ -53,7 +53,9 @@ public class ControlledMovement : MovScript
                 Debug.Log(verticalSpeed);
             }
         }
-        Vector3 forwardAxis = transform.forward * speed * Input.GetAxis("Vertical");
+        float forward = Input.GetAxis("Vertical");
+        //playerAnimator.SetFloat("ForwardAxis", forward);
+        Vector3 forwardAxis = transform.forward * speed * forward;
         Vector3 verticalAxis = Vector3.up * verticalSpeed;
         Vector3 horizontal = Vector3.up * Input.GetAxis("Horizontal");
 
