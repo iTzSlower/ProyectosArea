@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TransitionPanel : MonoBehaviour
-{
+public class TransitionPanel : MonoBehaviour {
 
     Image image;
     public float transitionSpeed = 1;
@@ -15,21 +14,21 @@ public class TransitionPanel : MonoBehaviour
         if (instance == null) {
             DontDestroyOnLoad(transform.parent.gameObject);
             instance = this;
-        } else {
+        }
+        else {
             DestroyImmediate(transform.parent.gameObject);
         }
     }
 
-    public void Initialize()
-    {
+    public void Initialize() {
         image = GetComponent<Image>();
     }
 
-    public IEnumerator FedeAlpha (float targetValue) {
+    public IEnumerator FadeAlpha(float targetValue) {
         Color temp;
         while (image.color.a != targetValue) {
             temp = image.color;
-            temp.a = Mathf.MoveTowards(temp.a, targetValue,transitionSpeed * Time.deltaTime);
+            temp.a = Mathf.MoveTowards(temp.a, targetValue, transitionSpeed * Time.deltaTime);
             image.color = temp;
             yield return null;
         }
