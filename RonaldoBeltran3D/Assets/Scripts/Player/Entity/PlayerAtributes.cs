@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerAtributes : MonoBehaviour {
 
     public int itemCount { get; private set; }
+    public Activator targetActivator;
 
     // Start is called before the first frame update
     public void Initialize() {
