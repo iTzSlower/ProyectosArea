@@ -15,6 +15,8 @@ public class ControlledMovement : MovScript {
     List<Ground> groundCollection = new List<Ground>();
     bool persistence;
 
+    MovingPlataform currentPlatform;
+
     class Ground {
         public Collider collider;
         public Vector3 contactNormal;
@@ -52,8 +54,9 @@ public class ControlledMovement : MovScript {
         Vector3 horizontal = Vector3.up * Input.GetAxis("Horizontal");
 
         playerAnimator.SetBool("Grounded", grounded);
-
-        characterController.Move((forwardAxis + verticalAxis) * Time.deltaTime);
+        Vector3 movement = (forwardAxis + verticalAxis) * Time.deltaTime;
+        if (currentPlatform) { movement += currentPlatform.lastMovement; }
+        characterController.Move(movement);
         transform.Rotate(horizontal * angularSpeed * Time.deltaTime);
     }
 
@@ -65,6 +68,7 @@ public class ControlledMovement : MovScript {
             if (Vector3.Dot(collision.contacts[i].normal, Vector3.up) > 0.8) {
                 if (groundCollection.Find(ground => ground.collider == collision.collider) == null) {
                     groundCollection.Add(new Ground(collision.collider, collision.contacts[i].normal));
+                    currentPlatform = collision.gameObject.GetComponent<MovingPlataform>();
                 }
             }
         }
@@ -73,6 +77,9 @@ public class ControlledMovement : MovScript {
     void OnCollisionExit(Collision collision) {
         Ground exitGround = groundCollection.Find(ground => ground.collider == collision.collider);
         if (exitGround != null) {
+            if (exitGround.collider.GetComponent<MovingPlataform> ()) {
+                currentPlatform = null;
+            }
             persistence = Vector3.Dot(exitGround.contactNormal, Vector3.up) < 1 && verticalSpeed <= 0;
             groundCollection.Remove(exitGround);
             StartCoroutine(RecheckPersistance());

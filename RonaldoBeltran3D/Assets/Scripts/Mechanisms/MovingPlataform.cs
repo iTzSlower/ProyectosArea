@@ -7,6 +7,7 @@ public class MovingPlataform : Activable {
     List<Vector3> movePoints;
     int targetPoint;
     int direction = 1;
+    public Vector3 lastMovement { get; private set; }
 
     // Start is called before the first frame update
     void Start() {
@@ -17,7 +18,9 @@ public class MovingPlataform : Activable {
     void Update() {
         if (currentlyActive && movePoints.Count > 1) {
             //TODO: Move the platform
+            Vector3 lasPosition = transform.position;
             transform.position = Vector3.MoveTowards(transform.position, movePoints[targetPoint], 2 * Time.deltaTime);
+            lastMovement = transform.position;
             if (transform.position == movePoints[targetPoint]) {
                 if ((targetPoint == movePoints.Count - 1) || targetPoint == 0 && direction < 0) {direction *= -1; }
                 targetPoint += direction;

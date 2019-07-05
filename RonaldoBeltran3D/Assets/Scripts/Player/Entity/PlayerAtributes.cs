@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using GameUtility;
 
 public class PlayerAtributes : MonoBehaviour {
 
@@ -26,6 +27,7 @@ public class PlayerAtributes : MonoBehaviour {
         else if (other.CompareTag("Checkpoint")) {
             CheckPoint checkpoint = other.GetComponent<CheckPoint>();
             SceneControl.persistentPlayerData.SetAllData(itemCount, checkpoint.pointData);
+            DataManagement.WriteDataToFile(SceneControl.persistentPlayerData);
             FindObjectOfType<CheckPointControl>().SetCurrentActive(checkpoint);
         }
     }
