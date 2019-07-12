@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MovingPlataform : Activable {
 
-    List<Vector3> movePoints;
+    public List<Vector3> movePoints;
     int targetPoint;
     int direction = 1;
     public Vector3 lastMovement { get; private set; }
